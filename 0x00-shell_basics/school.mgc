@@ -1,3 +1,2 @@
-#!/bin/bash
-0 string SCHOOL School data
-file --mim -type -m
+!:mime Schoolfile -C -m <your magic file>
+file -m <your magic file>
