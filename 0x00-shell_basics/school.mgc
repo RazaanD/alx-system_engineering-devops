@@ -1,2 +1,2 @@
+0 string SCHOOL School data
 !:mime Schoolfile -C -m <your magic file>
-file -m <your magic file>
