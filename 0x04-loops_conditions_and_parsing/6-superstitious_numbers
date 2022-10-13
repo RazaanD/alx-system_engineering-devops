@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#6. Superstitious numbers
+
+I=1
+while [ $I -le 20 ]
+do
+	echo $I
+	case $I in
+		4)
+			echo "bad luck from China"
+			;;
+		9)
+			echo "bad luck from Japan"
+			;;
+		17)
+			echo "bad luck from Italy"
+			;;
+	esac
+	((I++))
+done
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
