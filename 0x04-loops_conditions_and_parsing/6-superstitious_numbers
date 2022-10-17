@@ -1,25 +1,22 @@
 #!/usr/bin/env bash
-#6. Superstitious numbers
+# bash script that displays numbers from 1 to 20
 
-I=1
-while [ $I -le 20 ]
-do
-	echo $I
-	case $I in
-		4)
-			echo "bad luck from China"
-			;;
-		9)
-			echo "bad luck from Japan"
-			;;
-		17)
-			echo "bad luck from Italy"
-			;;
+i=1
+
+while [ $i -le 20 ]; do
+	case $i in
+	4)
+		echo -e "$i\nbad luck from China"
+		;;
+	9)
+		echo -e "$i\nbad luck from Japan"
+		;;
+	17)
+		echo -e "$i\nbad luck from Italy"
+		;;
+	*)
+		echo "$i"
+		;;
 	esac
-	((I++))
+	((i+=1))
 done
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
