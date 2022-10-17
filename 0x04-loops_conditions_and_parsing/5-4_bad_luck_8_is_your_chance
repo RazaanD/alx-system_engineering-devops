@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
-#4 bad luck, 8 is your chance
+# script that loops from 1 to 10
 
-I=1
-while [ $I -le 10 ]
-do
-	if [ $I -eq 4 ]
-	then
+i=1
+
+while [ $i -le 10 ]; do
+	if [ $i -eq 4 ]; then
 		echo "bad luck"
-	elif [ $I -eq 8 ]
-	then
+	elif [ $i -eq 8 ]; then
 		echo "good luck"
 	else
-		echo "Holberton School"
+		echo "Best School"
 	fi
-	((I++))
+	((i++))
 done
