@@ -1,21 +1,23 @@
 #!/usr/bin/env bash
-# Configure web servers for load balancer - HAPROXY config
+# Installs and setup haproxy
 
-sudo apt update &&
-sudo apt-get -y install haproxy
-# Backup basic configuration
-EPOCH=$(date +%s)
-cp /etc/haproxy/haproxy.cfg ./haproxy.$EPOCH.cfg
-# Enable HAPROXY
-echo "ENABLED=1" >> /etc/default/haproxy
-# Write config
-cat >> /etc/haproxy/haproxy.cfg << EOF
-listen http-in
-        bind *:80
-        mode http
-        balance roundrobin
-        server 1201-web-01 52.200.131.229:80 check
-        server 1201-web-02 54.146.160.217:80 check
-EOF
-# Create Files
-service haproxy restart
+apt-get install -y software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-1.8
+apt-get -y update
+apt-get install -y haproxy=1.8.\*
+
+echo "ENABLED=1" > /etc/default/haproxy
+
+# Listen to web1 and web2 servers
+echo "
+   listen load_balancer
+   bind *:80
+   mode http
+   balance roundrobin
+   option httpclose
+   option forwardfor
+   server 13956-web-01 44.200.83.158:80 check
+   server 13956-web-02 3.237.16.226:80 check
+" >> /etc/haproxy/haproxy.cfg
+
+service haproxy start
