@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
-# Run Nginx as the nginx user without root privileges.
-
-# configure nginx to listen on ports 8080
-sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
-sed -i "s/80/8080/g" /etc/nginx/sites-available/default
-
-# sets permissions so that, (U)ser / owner can read, can write and can't execute. 
-# (G)roup can read, can't write and can't execute. 
-# (O)thers can read, can't write and can't execute.
+# fix container:: task 2
+pkill -f apache2
 chmod 644 /etc/nginx/nginx.conf
-
-# stop the apache service
-pkill apache2
-# start the nginx service as user: nginx
-sudo -u nginx service nginx start
+sed -i "1i user nginx;" /etc/nginx/nginx.conf
+sed -i 's/80/8080/' /etc/nginx/sites-enabled/default
+sudo -u nginx service nginx restart
