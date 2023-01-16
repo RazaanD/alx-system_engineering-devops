@@ -1,3 +1,12 @@
 #!/usr/bin/env bash
-# runs whoami command under user passed as arg1
-su "$1" -s /bin/bash -c 'whoami'
+# run command as another user while taking a single argument
+
+if [ $# -gt 1 ]
+then 
+  echo "this program accepts only one argument!"
+elif [ $# -lt 1 ]
+then
+  echo "supply the user argument"
+else
+  sudo -u "$1" whoami
+fi
