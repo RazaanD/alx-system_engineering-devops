@@ -9,11 +9,17 @@ From 10:00 to 11:00 EAT all users where unable to access my personal blogs webpa
 **Timeline (all times East Africa Time)**
 
 09:55 AM: The sites is deployed
+
 10:00 AM: Outage begins
+
 10:20 AM: Users alerted me of the issue
+
 10:45 AM: Figured out the cause
+
 10:55 AM: Pushed updated configuration
+
 11:00 AM: The site is back online
+
 
 **Root Cause**
 
