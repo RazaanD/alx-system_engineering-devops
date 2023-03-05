@@ -32,5 +32,7 @@ After the issue brought to my attention I've tried to debug by using different t
 **Corrective and Preventative Measures**
 
 Testing before deployement
+
 Using monitoring tools like datadog
+
 ![image](https://user-images.githubusercontent.com/104936934/222953374-025f2581-543d-4217-82fc-12723daeb3f0.png)
