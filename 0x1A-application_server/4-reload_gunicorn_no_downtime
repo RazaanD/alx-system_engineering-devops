@@ -1,15 +1,32 @@
-#!/usr/bin/env bash
-[Unit]
-Description=Gunicorn instance to serve AirBnB Web
-After=network.target
+server {
+   # Listen on port 80
 
-[Service]
-Type=oneshot
-User=ubuntu
-Group=www-data
-WorkingDirectory=/home/ubuntu/AirBnB_clone_v4
-Environment="PATH=/home/ubuntu/.local/bin"
-ExecStart=/home/ubuntu/.local/bin/gunicorn --workers 3 --error-logfile /tmp/airbnb-error.log --access-logfile /tmp/airbnb-access.log --bind 0.0.0.0:5003 web_dynamic.2-hbnb:app
+    listen      80 default_server;
+    listen      [::]:80 default_server ipv6only=on;
+    # Use IP of server as domain name
+    server_name 18.210.33.190;
+    # Customize HTTP response header
+    add_header  X-Served-By 76287-web-01;
 
-[Install]
-WantedBy=multi-user.target
+    # Serve /airbnb-onepage/ route from AirBnB_clone_v2
+    location = /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+    }
+
+    # Serve /number_odd_or_even/ route on AirBnB_clone_v2
+    location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
+        proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+}
+   
+    # Serve API on AirBnB_clone_v3
+    
+    location /api {
+        proxy_pass http://127.0.0.1:5002/api;
+ }
+    # 404 error page
+    error_page 404 /404.html;
+    location /404 {
+        root /var/www/html;
+        internal;
+    }
+}
